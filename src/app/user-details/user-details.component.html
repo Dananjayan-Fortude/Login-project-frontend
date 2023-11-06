@@ -1,0 +1,47 @@
+<app-nav-bar-in></app-nav-bar-in>
+<p-table
+  [value]="details"
+  [paginator]="true"
+  [rows]="3"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} users"
+  [rowsPerPageOptions]="[3, 6, 9]"
+  [lazy]="true"
+  (onLazyLoad)="loadUsers($event)"
+  [totalRecords]="totalRecords"
+  [globalFilterFields]="['id', 'name', 'email']"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="id">ID
+        <p-sortIcon field="id"></p-sortIcon>
+      </th>
+      <th pSortableColumn="name">NAME
+        <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th pSortableColumn="email">EMAIL
+        <p-sortIcon field="email"></p-sortIcon>
+      </th>
+      <th>PASSWORD</th>
+      <th style="width: 5rem"></th>
+      <th style="width: 5rem"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-detail>
+    <tr>
+      <td>{{detail.id}}</td>
+      <td>{{detail.name}}</td>
+      <td>{{detail.email}}</td>
+      <td>{{detail.password}}</td>
+      <td>
+        <button type="button" pButton pRipple icon="pi pi-pencil" (click)="editButtonClick(detail)"
+                style="background-color: blue; color: white;"></button>
+      </td>
+      <td>
+        <button type="button" pButton pRipple icon="pi pi-trash" (click)="dltButtonClick(detail)"
+                style="background-color: red; color: white;"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
