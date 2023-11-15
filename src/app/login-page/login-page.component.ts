@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ToastrService } from "ngx-toastr";
+import {Component} from '@angular/core';
+import {ToastrService} from "ngx-toastr";
 import {LoginPageService} from "./login-page.service";
 import {Router} from "@angular/router";
 import {TokenService} from "../token.service";
@@ -17,11 +17,13 @@ export class LoginPageComponent {
   alertType: string = "";
   userEmail: string | undefined;
   userPass: string | undefined;
+
   constructor(
     private toast: ToastrService,
     private service: LoginPageService,
     private router: Router,
-    private tokenService: TokenService) { }
+    private tokenService: TokenService) {
+  }
 
   emailInput(eventData: any) {
     this.userEmail = eventData.target.value;
@@ -31,7 +33,7 @@ export class LoginPageComponent {
     this.userPass = eventData.target.value;
   }
 
-  loginFunc(){
+  loginFunc() {
     const accessToken = localStorage.getItem('accessToken');
     // @ts-ignore
     this.tokenService.addToken(accessToken);
