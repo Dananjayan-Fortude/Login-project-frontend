@@ -46,13 +46,14 @@ export class UserDetailsService {
         });
       }),
       catchError((error) => {
+        console.log(error.error.statusCode);
         // Handle the error here
         //console.error('Error occurred:', error);
         // You can also perform additional actions, such as showing an error message
         // or logging the error to a remote service
 
         // Rethrow the error to propagate it to the subscriber
-        return throwError(error);
+        return error;
       }),
       delay(5000), // Add a delay before reloading the page
       tap(() => {
