@@ -59,7 +59,7 @@ export class UserDetailsComponent {
   }
 
   dltButtonClick(details: any) {
-    console.log(details.id);
+    //console.log(details.id);
     this.userService.delete(details.id).subscribe(
       () => {
         // The deletion was successful
@@ -67,19 +67,16 @@ export class UserDetailsComponent {
         location.reload();
       },
       (error) => {
+        console.log(error.error.statusCode);
         // An error occurred during deletion
-        console.error('Error occurred:', error);
-        if (error.statusCode === 401 && error.error.message === 'Forbidden resource') {
-          // Handle the "Forbidden resource" error specifically
-          console.log('Forbidden resource error');
-          this.toast.error('YOU DO NOT HAVE ACCESS TO DELETE', error.error.message, {
-            timeOut: 3000,
-            progressBar: true,
-          });
-        } else {
-          // Handle other errors
-          console.log('Generic error');
-        }
+        //console.error('Error occurred:', error);
+        // if (error.error.statusCode === 403 || error.error.message === 'Forbidden resource') {
+        //   // Handle the "Forbidden resource" error specifically
+        //   console.log('Forbidden resource error');
+        //   this.toast.error('YOU DO NOT HAVE ACCESS TO DELETE', error.error.message, {
+        //     timeOut: 3000,
+        //     progressBar: true,
+        //   });
       }
     );
   }

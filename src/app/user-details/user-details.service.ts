@@ -31,7 +31,7 @@ export class UserDetailsService {
   delete(id: number): Observable<any> {
     const accessToken = localStorage.getItem('accessToken');
     const url = `${this.dltUrl}/${id}`;
-    console.log(url);
+    //console.log(url);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${accessToken}`,
     });
@@ -46,7 +46,15 @@ export class UserDetailsService {
         });
       }),
       catchError((error) => {
-        console.log(error.error.statusCode);
+        //console.log(error.error.statusCode);
+        if (error.error.statusCode === 403 || error.error.message === 'Forbidden resource') {
+          // Handle the "Forbidden resource" error specifically
+          //console.log('Forbidden resource error');
+          this.toast.error('YOU DO NOT HAVE ACCESS TO DELETE', error.error.message, {
+            timeOut: 3000,
+            progressBar: true,
+          });
+        }
         // Handle the error here
         //console.error('Error occurred:', error);
         // You can also perform additional actions, such as showing an error message
