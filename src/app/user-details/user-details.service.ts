@@ -30,7 +30,8 @@ export class UserDetailsService {
 
   delete(id: number): Observable<any> {
     const accessToken = localStorage.getItem('accessToken');
-    const url = `${this.dltUrl}/id=${id}`;
+    const url = `${this.dltUrl}/${id}`;
+    console.log(url);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${accessToken}`,
     });
@@ -46,7 +47,7 @@ export class UserDetailsService {
       }),
       catchError((error) => {
         // Handle the error here
-        console.error('Error occurred:', error);
+        //console.error('Error occurred:', error);
         // You can also perform additional actions, such as showing an error message
         // or logging the error to a remote service
 
