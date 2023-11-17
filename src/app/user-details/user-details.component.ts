@@ -68,7 +68,7 @@ export class UserDetailsComponent {
       (error) => {
         // An error occurred during deletion
         console.error('Error occurred:', error);
-        if (error.status === 403 && error.error.message === 'Forbidden resource') {
+        if (error.status === 401 && error.error.message === 'Forbidden resource') {
           // Handle the "Forbidden resource" error specifically
           console.log('Forbidden resource error');
           this.toast.error('YOU DO NOT HAVE ACCESS TO DELETE', error.error.message, {
