@@ -6,6 +6,7 @@ import {UserDetailsComponent} from "./user-details/user-details.component";
 import {UserDetailsEditComponent} from "./user-details-edit/user-details-edit.component";
 import {HomeComponent} from "./home/home.component";
 import {AboutPageComponent} from "./about-page/about-page.component";
+import {PayloadOutComponent} from "./payload-out/payload-out.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'user-details', component: UserDetailsComponent },
   { path: 'user-details-edit/:id', component: UserDetailsEditComponent },
   { path: 'about-page', component: AboutPageComponent },
+  { path: 'payload-out', component: PayloadOutComponent}
 ];
 
 @NgModule({

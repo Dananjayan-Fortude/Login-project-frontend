@@ -17,6 +17,7 @@ import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AboutPageComponent } from './about-page/about-page.component';
+import { PayloadOutComponent } from './payload-out/payload-out.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AboutPageComponent } from './about-page/about-page.component';
     NavBarComponent,
     NavBarInComponent,
     HomeComponent,
-    AboutPageComponent
+    AboutPageComponent,
+    PayloadOutComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,12 @@
-<p>payload-out works!</p>
+<!-- Button -->
+<button type="button" (click)="getID()">Click Me</button>
+
+<!-- Input Box -->
+<input type="text" placeholder="Enter the id" (input)="idInput($event)" />
+
+<span>
+  <ng-container *ngFor="let pay of payloads; let i = index">
+    <pre class="json-display">===== object: {{ i+1 }} =====<br/>{{ pay | json }}</pre>
+  </ng-container>
+</span>
+
