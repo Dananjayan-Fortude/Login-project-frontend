@@ -26,6 +26,7 @@ export class PayloadOutComponent {
     try {
       this.service.payload(this.id.toString()).subscribe(
         (response: any) => {
+          this.total = [];
           this.susStep = response.suspenededStep;
           this.pickStat = response.picklistStatus;
           this.allocStat = response.allocatedStatus;
@@ -47,13 +48,15 @@ export class PayloadOutComponent {
           } else if (this.pickStat === 7){
             this.pickStatMean = "REVERSED"
           }
-          console.log(response.headerID);
-          if (response && response.payloads && response.payloads.length !== 0) {
+          let totVal = 0;
+          if (response && response.payloads && response.payloads.length !== 0 ) {
             //console.log(JSON.parse(response.payloads[0]))
             for (let i = 0; i < response.payloads.length; i++) {
               for (let x = 0; x < JSON.parse(response.payloads[i]).to.mos.length; x++) {
-                this.total.push(JSON.parse(response.payloads[i]).to.mos[x].quantity)
+                totVal = totVal + JSON.parse(response.payloads[i]).to.mos[x].quantity
               }
+              this.total.push(totVal)
+              totVal = 0;
             }
             for (let i = 0; i < response.payloads.length; i++) {
               try {
