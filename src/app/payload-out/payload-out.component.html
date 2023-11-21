@@ -1,12 +1,24 @@
+<!-- Input Box -->
+<input type="text" placeholder="Enter the id" (input)="idInput($event)"/>
+<br/>
 <!-- Button -->
 <button type="button" (click)="getID()">Click Me</button>
 
-<!-- Input Box -->
-<input type="text" placeholder="Enter the id" (input)="idInput($event)" />
-
+<br/><br/>
+<span>picklist header id: <b>{{headerID}}</b></span>
+<br/>
+<span>picklist display id: <b>{{id}}</b></span>
+<br/>
+<span>picklist suspended step: <b>{{susStep}}</b></span>
+<br/>
+<span>picklist status: <b>{{pickStat}}</b>=><i>{{pickStatMean}}</i></span>
+<br/>
+<span>picklist is allocated status: <b>{{allocStat}}</b></span>
+<br/>
+<hr>
 <span>
   <ng-container *ngFor="let pay of payloads; let i = index">
-    <pre class="json-display">===== object: {{ i+1 }} =====<br/>{{ pay | json }}</pre>
+    <pre class="json-display">===== object: {{ i+1 }} =====<br/> error message {{i+1}}: {{error_msg[i]}}<br/>{{ pay | json }}<br/>Total quantity: {{total[i]}}</pre>
   </ng-container>
 </span>
 
