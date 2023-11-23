@@ -15,6 +15,7 @@ export class PayloadOutComponent {
   payloads: any[] = [];
   error_msg: any[] = [];
   total: number[] = [];
+  error_codes: any[] = [];
   headerID: any;
   susStep: any;
   pickStat: any;
@@ -26,6 +27,8 @@ export class PayloadOutComponent {
     try {
       this.service.payload(this.id.toString()).subscribe(
         (response: any) => {
+          this.pickStatMean = "";
+          this.error_codes = [];
           this.total = [];
           this.susStep = response.suspenededStep;
           this.pickStat = response.picklistStatus;
@@ -50,7 +53,7 @@ export class PayloadOutComponent {
           }
           let totVal = 0;
           if (response && response.payloads && response.payloads.length !== 0 ) {
-            //console.log(JSON.parse(response.payloads[0]))
+            console.log(this.error_codes);
             for (let i = 0; i < response.payloads.length; i++) {
               for (let x = 0; x < JSON.parse(response.payloads[i]).to.mos.length; x++) {
                 totVal = totVal + JSON.parse(response.payloads[i]).to.mos[x].quantity
@@ -63,12 +66,13 @@ export class PayloadOutComponent {
                 const parsedPayload = JSON.parse(response.payloads[i]);
                 this.payloads.push(parsedPayload);
                 this.error_msg.push(response.errors[i]);
+                this.error_codes.push(response.error_codes[i]);
               } catch (parseError) {
                 console.log('Error parsing payload:', parseError);
               }
             }
           } else {
-            console.log('No payload found');
+            console.log(response.errors);
           }
         },
         (error: any) => {
