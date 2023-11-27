@@ -9,6 +9,7 @@ export class PayloadOutService {
 
   private url = 'http://localhost:3000/database/errorpayload/';
   private url2 = 'http://localhost:3000/database/query/';
+  private url3 = 'http://localhost:3000/database/ExcelGen/';
   constructor(private http: HttpClient) { }
 
   payload(displayHeaderId: string): Observable<any> {
@@ -16,5 +17,8 @@ export class PayloadOutService {
   }
   query(displayHeaderId: string): Observable<any> {
     return this.http.get(this.url2 + displayHeaderId);
+  }
+  excelGen(displayHeaderId: string): Observable<any> {
+    return this.http.get(this.url3 + displayHeaderId);
   }
 }

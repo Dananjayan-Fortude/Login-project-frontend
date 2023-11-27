@@ -5,6 +5,8 @@
 <button type="button" (click)="getID()">Get error payloads</button>
 <br/>
 <button type="button" (click)="getQuery()">Get the query</button>
+<br/>
+<button type="button" (click)="excel()">Download excel</button>
 
 <br/><br/>
 <span>picklist header id: <b>{{headerID}}</b></span>
@@ -30,3 +32,4 @@
   </ng-container>
 </span>
 
+<span id="alert" [class]="alertType" [hidden]="hideAlert" style="text-align: center;" class="message">{{ alertMessage }}</span>

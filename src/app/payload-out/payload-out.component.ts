@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PayloadOutService } from './payload-out.service';
-import {parseJson} from "@angular/cli/src/utilities/json-file";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-payload-out',
@@ -8,7 +8,8 @@ import {parseJson} from "@angular/cli/src/utilities/json-file";
   styleUrls: ['./payload-out.component.css']
 })
 export class PayloadOutComponent {
-  constructor( private service: PayloadOutService) {
+  constructor( private service: PayloadOutService,
+               private toast: ToastrService) {
   }
 
   id : string = "";
@@ -23,6 +24,9 @@ export class PayloadOutComponent {
   pickStatMean: string = "";
   updateQuery1: string = "";
   updateQuery2: string = "";
+  alertType: string = "";
+  alertMessage: string | undefined;
+  hideAlert: boolean = true;
 
   getID() {
     this.payloads = [];
@@ -108,4 +112,36 @@ export class PayloadOutComponent {
       console.log('Error in getQuery');
     }
   }
+
+  excel() {
+    try {
+      this.service.excelGen(this.id.toString()).subscribe(
+        (response: any) => {
+          // console.log(response);
+        },
+        (error: any) => {
+          if (error.status === 200) {
+            this.alertType = "alert alert-success";
+            this.alertMessage = "Downloaded successfully";
+            this.toast.success('Excel file downloaded', 'Success', {
+              timeOut: 3000,
+              progressBar: true,
+            });
+          }
+          else if (error.status === 500) {
+            this.alertType = "alert alert-danger";
+            this.alertMessage = "Error downloading file";
+            this.toast.error('Error downloading file', 'Error', {
+              timeOut: 3000,
+              progressBar: true,
+            });
+          }
+        }
+      );
+    } catch (e) {
+      console.log('Error in excel');
+    }
+  }
+
+  protected readonly alert = alert;
 }
