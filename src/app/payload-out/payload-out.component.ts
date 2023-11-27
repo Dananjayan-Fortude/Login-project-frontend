@@ -24,6 +24,7 @@ export class PayloadOutComponent {
   pickStatMean: string = "";
   updateQuery1: string = "";
   updateQuery2: string = "";
+  queryDetails: string = "";
   alertType: string = "";
   alertMessage: string | undefined;
   hideAlert: boolean = true;
@@ -100,6 +101,7 @@ export class PayloadOutComponent {
     try {
       this.service.query(this.id.toString()).subscribe(
         (response: any) => {
+          this.queryDetails = response.details;
           this.updateQuery1 = response.picklistUpdate;
           this.updateQuery2 = response.suspenededUpdate;
         },

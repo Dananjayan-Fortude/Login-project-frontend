@@ -21,15 +21,19 @@
 <br/>
 <hr>
 <span>
+  <pre>{{queryDetails}}</pre>
+
 <pre>{{updateQuery1}}</pre>
-  <br>
+
   <pre>{{updateQuery2}}</pre>
 </span>
 <hr>
 <span>
   <ng-container *ngFor="let pay of payloads; let i = index">
-    <pre class="json-display">===== object: {{ i+1 }} =====<br/> error message {{i+1}}: {{error_msg[i]}} ({{error_codes[i]}})<br/>{{ pay | json }}<br/>Total quantity: {{total[i]}}</pre>
+    <pre class="json-display">===== object: {{ i + 1 }} =====<br/> error message {{i + 1}}: {{error_msg[i]}}
+      ({{error_codes[i]}})<br/>{{ pay | json }}<br/>Total quantity: {{total[i]}}</pre>
   </ng-container>
 </span>
 
-<span id="alert" [class]="alertType" [hidden]="hideAlert" style="text-align: center;" class="message">{{ alertMessage }}</span>
+<span id="alert" [class]="alertType" [hidden]="hideAlert" style="text-align: center;"
+      class="message">{{ alertMessage }}</span>
