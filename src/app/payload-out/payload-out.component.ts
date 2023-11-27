@@ -53,7 +53,7 @@ export class PayloadOutComponent {
           }
           let totVal = 0;
           if (response && response.payloads && response.payloads.length !== 0 ) {
-            console.log(this.error_codes);
+            // console.log(this.error_codes);
             for (let i = 0; i < response.payloads.length; i++) {
               for (let x = 0; x < JSON.parse(response.payloads[i]).to.mos.length; x++) {
                 totVal = totVal + JSON.parse(response.payloads[i]).to.mos[x].quantity
