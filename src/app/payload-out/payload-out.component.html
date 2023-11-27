@@ -3,6 +3,8 @@
 <br/>
 <!-- Button -->
 <button type="button" (click)="getID()">Get error payloads</button>
+<br/>
+<button type="button" (click)="getQuery()">Get the query</button>
 
 <br/><br/>
 <span>picklist header id: <b>{{headerID}}</b></span>
@@ -15,6 +17,12 @@
 <br/>
 <span>picklist is allocated status: <b>{{allocStat}}</b></span>
 <br/>
+<hr>
+<span>
+<pre>{{updateQuery1}}</pre>
+  <br>
+  <pre>{{updateQuery2}}</pre>
+</span>
 <hr>
 <span>
   <ng-container *ngFor="let pay of payloads; let i = index">

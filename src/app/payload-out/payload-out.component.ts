@@ -21,6 +21,8 @@ export class PayloadOutComponent {
   pickStat: any;
   allocStat: any;
   pickStatMean: string = "";
+  updateQuery1: string = "";
+  updateQuery2: string = "";
 
   getID() {
     this.payloads = [];
@@ -76,17 +78,34 @@ export class PayloadOutComponent {
           }
         },
         (error: any) => {
-          console.log('Error in HTTP request:');
+          console.log('Error in HTTP request');
           // Handle the error as needed
         }
       );
     } catch (e) {
-      console.log('Error in getID:');
+      console.log('Error in getID');
       // Handle the error as needed
     }
   }
 
   idInput(eventData: any) {
     this.id = eventData.target.value;
+  }
+
+  getQuery() {
+    try {
+      this.service.query(this.id.toString()).subscribe(
+        (response: any) => {
+          this.updateQuery1 = response.picklistUpdate;
+          this.updateQuery2 = response.suspenededUpdate;
+        },
+        (error: any) => {
+          console.log('Error in HTTP request');
+          // Handle the error as needed
+        }
+      );
+    } catch (e) {
+      console.log('Error in getQuery');
+    }
   }
 }
