@@ -110,60 +110,268 @@
 /*  transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);*/
 /*}*/
 
-/*.inputbox {*/
+.inputbox {
+  position: relative;
+  width: 250px;
+  left: 30px;
+  top: 15px;
+}
+
+.inputbox input {
+  position: relative;
+  width: 100%;
+  padding: 20px 10px 10px;
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  color: #23242a;
+  font-size: 1em;
+  letter-spacing: 0.05em;
+  transition: 0.5s;
+  z-index: 10;
+}
+
+.inputbox span {
+  position: absolute;
+  left: 0;
+  padding: 20px 10px 10px;
+  font-size: 1em;
+  color: #8f8f8f;
+  letter-spacing: 00.05em;
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.inputbox input:valid ~span,
+.inputbox input:focus ~span {
+  color: #0d0e0e;
+  transform: translateX(-10px) translateY(-34px);
+  font-size: 0,75em;
+}
+
+.inputbox i {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #f1c94a;
+  border-radius: 4px;
+  transition: 0.5s;
+  pointer-events: none;
+  z-index: 9;
+}
+
+.inputbox input:valid ~i,
+.inputbox input:focus ~i {
+  height: 44px;
+}
+
+
+/*button.btn-query {*/
+/*  --color: #0077ff;*/
+/*  font-family: inherit;*/
+/*  display: inline-block;*/
+/*  width: 10em;*/
+/*  height: 2.6em;*/
+/*  line-height: 2.5em;*/
+/*  overflow: hidden;*/
+/*  margin: 20px;*/
+/*  font-size: 17px;*/
+/*  z-index: 1;*/
+/*  color: var(--color);*/
+/*  border: 2px solid var(--color);*/
+/*  border-radius: 6px;*/
 /*  position: relative;*/
-/*  width: 250px;*/
-/*  left: 30px;*/
-/*  top: 15px;*/
 /*}*/
 
-/*.inputbox input {*/
+/*button.btn-query::before {*/
+/*  position: absolute;*/
+/*  content: "";*/
+/*  background: var(--color);*/
+/*  width: 150px;*/
+/*  height: 200px;*/
+/*  z-index: -1;*/
+/*  border-radius: 50%;*/
+/*}*/
+
+/*button.btn-query:hover {*/
+/*  color: white;*/
+/*}*/
+
+/*button.btn-query:before {*/
+/*  top: 100%;*/
+/*  left: 100%;*/
+/*  transition: .3s all;*/
+/*}*/
+
+/*button.btn-query:hover::before {*/
+/*  top: -30px;*/
+/*  left: -30px;*/
+/*}*/
+
+
+
+/*button.btn-excel {*/
 /*  position: relative;*/
-/*  width: 100%;*/
-/*  padding: 20px 10px 10px;*/
+/*  padding: 10px 20px;*/
+/*  border-radius: 7px;*/
+/*  border: 1px solid rgb(61, 106, 255);*/
+/*  font-size: 14px;*/
+/*  text-transform: uppercase;*/
+/*  font-weight: 600;*/
+/*  letter-spacing: 2px;*/
 /*  background: transparent;*/
-/*  outline: none;*/
-/*  box-shadow: none;*/
-/*  border: none;*/
-/*  color: #23242a;*/
-/*  font-size: 1em;*/
-/*  letter-spacing: 0.05em;*/
-/*  transition: 0.5s;*/
-/*  z-index: 10;*/
+/*  color: #fff;*/
+/*  overflow: hidden;*/
+/*  box-shadow: 0 0 0 0 transparent;*/
+/*  -webkit-transition: all 0.2s ease-in;*/
+/*  -moz-transition: all 0.2s ease-in;*/
+/*  transition: all 0.2s ease-in;*/
 /*}*/
 
-/*.inputbox span {*/
+/*button.btn-excel:hover {*/
+/*  background: rgb(61, 106, 255);*/
+/*  box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);*/
+/*  -webkit-transition: all 0.2s ease-out;*/
+/*  -moz-transition: all 0.2s ease-out;*/
+/*  transition: all 0.2s ease-out;*/
+/*}*/
+
+/*button.btn-excel:hover::before {*/
+/*  -webkit-animation: sh02 0.5s 0s linear;*/
+/*  -moz-animation: sh02 0.5s 0s linear;*/
+/*  animation: sh02 0.5s 0s linear;*/
+/*}*/
+
+/*button.btn-excel::before {*/
+/*  content: '';*/
+/*  display: block;*/
+/*  width: 0px;*/
+/*  height: 86%;*/
 /*  position: absolute;*/
-/*  left: 0;*/
-/*  padding: 20px 10px 10px;*/
-/*  font-size: 1em;*/
-/*  color: #8f8f8f;*/
-/*  letter-spacing: 00.05em;*/
-/*  transition: 0.5s;*/
-/*  pointer-events: none;*/
+/*  top: 7%;*/
+/*  left: 0%;*/
+/*  opacity: 0;*/
+/*  background: #fff;*/
+/*  box-shadow: 0 0 50px 30px #fff;*/
+/*  -webkit-transform: skewX(-20deg);*/
+/*  -moz-transform: skewX(-20deg);*/
+/*  -ms-transform: skewX(-20deg);*/
+/*  -o-transform: skewX(-20deg);*/
+/*  transform: skewX(-20deg);*/
 /*}*/
 
-/*.inputbox input:valid ~span,*/
-/*.inputbox input:focus ~span {*/
-/*  color: #0d0e0e;*/
-/*  transform: translateX(-10px) translateY(-34px);*/
-/*  font-size: 0,75em;*/
+/*@keyframes sh02 {*/
+/*  from {*/
+/*    opacity: 0;*/
+/*    left: 0%;*/
+/*  }*/
+
+/*  50% {*/
+/*    opacity: 1;*/
+/*  }*/
+
+/*  to {*/
+/*    opacity: 0;*/
+/*    left: 100%;*/
+/*  }*/
 /*}*/
 
-/*.inputbox i {*/
-/*  position: absolute;*/
-/*  left: 0;*/
-/*  bottom: 0;*/
-/*  width: 100%;*/
-/*  height: 2px;*/
-/*  background: #f1c94a;*/
-/*  border-radius: 4px;*/
-/*  transition: 0.5s;*/
-/*  pointer-events: none;*/
-/*  z-index: 9;*/
+/*button.btn-excel:active {*/
+/*  box-shadow: 0 0 0 0 transparent;*/
+/*  -webkit-transition: box-shadow 0.2s ease-in;*/
+/*  -moz-transition: box-shadow 0.2s ease-in;*/
+/*  transition: box-shadow 0.2s ease-in;*/
 /*}*/
 
-/*.inputbox input:valid ~i,*/
-/*.inputbox input:focus ~i {*/
-/*  height: 44px;*/
-/*}*/
+button {
+  width:250px;
+  left: 33px;
+  position: relative;
+  margin: 0;
+  padding: 0.8em 1em;
+  outline: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  background-color: #333;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 300;
+  font-size: 18px;
+  font-family: inherit;
+  z-index: 0;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+
+button:hover {
+  animation: sh0 0.5s ease-in-out both;
+}
+
+@keyframes sh0 {
+  0% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+
+  25% {
+    transform: rotate(7deg) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: rotate(-7deg) translate3d(0, 0, 0);
+  }
+
+  75% {
+    transform: rotate(1deg) translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+}
+
+button:hover span {
+  animation: storm 0.7s ease-in-out both;
+  animation-delay: 0.06s;
+}
+
+button::before,
+button::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  transition: transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+  z-index: -1;
+  transform: translate(100%, -25%) translate3d(0, 0, 0);
+}
+
+button:hover::before,
+button:hover::after {
+  opacity: 0.15;
+  transition: transform 0.2s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+
+button:hover::before {
+  transform: translate3d(50%, 0, 0) scale(0.9);
+}
+
+button:hover::after {
+  transform: translate(50%, 0) scale(1.1);
+}
+
+
+
+

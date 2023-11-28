@@ -8,9 +8,9 @@
 <!-- Button -->
 <button (click)="getID()" class="btn-shine"><span>Get error payloads</span></button>
 <br/>
-<button type="button" (click)="getQuery()">Get the query</button>
+<button class="btn-query" type="button" (click)="getQuery()">Get the query</button>
 <br/>
-<button type="button" (click)="excel()">Download excel</button>
+<button type="button" class="btn-excel" (click)="excel()">Download excel</button>
 
 <br/><br/>
 <span>picklist header id: <b>{{headerID}}</b></span>
@@ -31,6 +31,7 @@
 
   <pre>{{updateQuery2}}</pre>
 </span>
+
 <hr>
 <span>
   <ng-container *ngFor="let pay of payloads; let i = index">
