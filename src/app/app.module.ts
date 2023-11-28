@@ -33,18 +33,18 @@ import {FormsModule} from "@angular/forms";
     AboutPageComponent,
     PayloadOutComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ToastrModule.forRoot(),
-        HttpClientModule,
-        NgxPaginationModule,
-        TableModule,
-        ButtonModule,
-        RippleModule,
-        BrowserAnimationsModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ToastrModule.forRoot(),
+    HttpClientModule,
+    NgxPaginationModule,
+    TableModule,
+    ButtonModule,
+    RippleModule,
+    BrowserAnimationsModule,
+    FormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
