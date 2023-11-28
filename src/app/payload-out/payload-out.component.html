@@ -1,8 +1,12 @@
 <!-- Input Box -->
-<input type="text" placeholder="Enter the id" (input)="idInput($event)"/>
+<div class="inputbox">
+  <input required="required" type="text" (input)="idInput($event)">
+  <span>Enter the Display ID</span>
+  <i></i>
+</div>
 <br/>
 <!-- Button -->
-<button type="button" (click)="getID()">Get error payloads</button>
+<button (click)="getID()" class="btn-shine"><span>Get error payloads</span></button>
 <br/>
 <button type="button" (click)="getQuery()">Get the query</button>
 <br/>

@@ -30,6 +30,9 @@ export class PayloadOutComponent {
   hideAlert: boolean = true;
 
   getID() {
+    this.updateQuery1 = "";
+    this.updateQuery2 = "";
+    this.queryDetails = "";
     this.payloads = [];
     try {
       this.service.payload(this.id.toString()).subscribe(
@@ -79,7 +82,12 @@ export class PayloadOutComponent {
               }
             }
           } else {
-            console.log(response.errors);
+            this.alertType = "alert alert-danger";
+            this.toast.error('No payloads found', 'Error', {
+              timeOut: 3000,
+              progressBar: true,
+            });
+            
           }
         },
         (error: any) => {
@@ -144,6 +152,4 @@ export class PayloadOutComponent {
       console.log('Error in excel');
     }
   }
-
-  protected readonly alert = alert;
 }
