@@ -5,13 +5,37 @@
   <i></i>
 </div>
 <br/>
+<div class="choice">
+  <div>
+    <label>
+      <input type="radio" name="options" value="option1">
+      Error payload
+    </label>
+  </div>
+
+  <div>
+    <label>
+      <input type="radio" name="options" value="option2">
+      Success payload
+    </label>
+  </div>
+</div>
+
 <!-- Button -->
 <button (click)="getID()" class="btn-shine"><span>Get error payloads</span></button>
 <br/>
 <button class="btn-query" type="button" (click)="getQuery()">Get the query</button>
 <br/>
 <button type="button" class="btn-excel" (click)="excel()">Download excel</button>
+<hr/>
+<span>
+  <pre>{{queryDetails}}</pre>
 
+<pre>{{updateQuery1}}</pre>
+
+  <pre>{{updateQuery2}}</pre>
+</span>
+<hr/>
 <br/><br/>
 <span>picklist header id: <b>{{headerID}}</b></span>
 <br/>
@@ -22,20 +46,10 @@
 <span>picklist status: <b>{{pickStat}}</b>=><i>{{pickStatMean}}</i></span>
 <br/>
 <span>picklist is allocated status: <b>{{allocStat}}</b></span>
-<br/>
-<hr>
-<span>
-  <pre>{{queryDetails}}</pre>
-
-<pre>{{updateQuery1}}</pre>
-
-  <pre>{{updateQuery2}}</pre>
-</span>
-
-<hr>
+<hr/>
 <span>
   <ng-container *ngFor="let pay of payloads; let i = index">
-    <pre class="json-display">===== object: {{ i + 1 }} =====<br/> error message {{i + 1}}: {{error_msg[i]}} ({{error_codes[i]}})<br/>{{ pay | json }}<br/>Total quantity: {{total[i]}}</pre>
+    <pre class="json-display">===== object: {{ i + 1 }} =====<br/> Error Message : {{error_msg[i]}}<br> Error Code: {{error_codes[i]}}<br/>{{ pay | json }}<br/>Total quantity: {{total[i]}}</pre>
   </ng-container>
 </span>
 

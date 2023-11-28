@@ -147,7 +147,7 @@
 .inputbox input:focus ~span {
   color: #0d0e0e;
   transform: translateX(-10px) translateY(-34px);
-  font-size: 0,75em;
+  font-size: 0.75em;
 }
 
 .inputbox i {
@@ -371,7 +371,3 @@ button:hover::before {
 button:hover::after {
   transform: translate(50%, 0) scale(1.1);
 }
-
-
-
-

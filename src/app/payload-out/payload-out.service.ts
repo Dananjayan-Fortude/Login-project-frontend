@@ -10,6 +10,7 @@ export class PayloadOutService {
   private url = 'http://localhost:3000/database/errorpayload/';
   private url2 = 'http://localhost:3000/database/query/';
   private url3 = 'http://localhost:3000/database/ExcelGen/';
+  private url4 = 'http://localhost:3000/database/payloads/';
   constructor(private http: HttpClient) { }
 
   payload(displayHeaderId: string): Observable<any> {
