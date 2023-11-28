@@ -22,4 +22,8 @@ export class PayloadOutService {
   excelGen(displayHeaderId: string): Observable<any> {
     return this.http.get(this.url3 + displayHeaderId);
   }
+
+  successPayload(displayHeaderId: string): Observable<any> {
+    return this.http.get(this.url4 + displayHeaderId);
+  }
 }

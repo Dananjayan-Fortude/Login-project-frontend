@@ -8,21 +8,21 @@
 <div class="choice">
   <div>
     <label>
-      <input type="radio" name="options" value="option1">
-      Error payload
+      <input type="radio" name="options" value="success" [(ngModel)]="selectedOption" (change)="onRadioButtonChange('success')">
+      Success payload
     </label>
   </div>
 
   <div>
     <label>
-      <input type="radio" name="options" value="option2">
-      Success payload
+      <input type="radio" name="options" value="failed" [(ngModel)]="selectedOption" (change)="onRadioButtonChange('failed')">
+      Error payload
     </label>
   </div>
 </div>
 
 <!-- Button -->
-<button (click)="getID()" class="btn-shine"><span>Get error payloads</span></button>
+<button (click)="getID()" class="btn-shine"><span>Get payloads</span></button>
 <br/>
 <button class="btn-query" type="button" (click)="getQuery()">Get the query</button>
 <br/>
@@ -47,9 +47,15 @@
 <br/>
 <span>picklist is allocated status: <b>{{allocStat}}</b></span>
 <hr/>
-<span>
+<span *ngIf="selectedOption === 'failed'">
   <ng-container *ngFor="let pay of payloads; let i = index">
     <pre class="json-display">===== object: {{ i + 1 }} =====<br/> Error Message : {{error_msg[i]}}<br> Error Code: {{error_codes[i]}}<br/>{{ pay | json }}<br/>Total quantity: {{total[i]}}</pre>
+  </ng-container>
+</span>
+
+<span *ngIf="selectedOption === 'success'">
+  <ng-container *ngFor="let pay of payloads; let i = index">
+    <pre class="json-display">===== object: {{ i + 1 }} =====<br/> {{ pay | json }}<br/>Total quantity: {{total[i]}}</pre>
   </ng-container>
 </span>
 

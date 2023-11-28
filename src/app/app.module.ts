@@ -18,6 +18,7 @@ import {RippleModule} from "primeng/ripple";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AboutPageComponent } from './about-page/about-page.component';
 import { PayloadOutComponent } from './payload-out/payload-out.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -32,17 +33,18 @@ import { PayloadOutComponent } from './payload-out/payload-out.component';
     AboutPageComponent,
     PayloadOutComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ToastrModule.forRoot(),
-    HttpClientModule,
-    NgxPaginationModule,
-    TableModule,
-    ButtonModule,
-    RippleModule,
-    BrowserAnimationsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ToastrModule.forRoot(),
+        HttpClientModule,
+        NgxPaginationModule,
+        TableModule,
+        ButtonModule,
+        RippleModule,
+        BrowserAnimationsModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
