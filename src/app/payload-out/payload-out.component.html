@@ -36,7 +36,6 @@
   <pre>{{updateQuery2}}</pre>
 </span>
 <hr/>
-<br/><br/>
 <span>picklist header id: <b>{{headerID}}</b></span>
 <br/>
 <span>picklist display id: <b>{{id}}</b></span>
@@ -55,7 +54,7 @@
 
 <span *ngIf="selectedOption === 'success'">
   <ng-container *ngFor="let pay of payloads; let i = index">
-    <pre class="json-display">===== object: {{ i + 1 }} =====<br/> {{ pay | json }}<br/>Total quantity: {{total[i]}}</pre>
+    <pre class="json-display">===== object: {{ i + 1 }} =====<br/>  {{ pay | json }}<br/>Total quantity: {{total[i]}}</pre>
   </ng-container>
 </span>
 
