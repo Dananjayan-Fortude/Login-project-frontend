@@ -31,6 +31,10 @@ export class PayloadOutComponent {
   selectedOption: string = '';
 
   onRadioButtonChange(value: string) {
+    this.payloads = [];
+    this.error_msg = [];
+    this.total = [];
+    this.error_codes = [];
     this.selectedOption = value;
   }
 
