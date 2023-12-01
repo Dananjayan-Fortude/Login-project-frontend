@@ -19,6 +19,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AboutPageComponent } from './about-page/about-page.component';
 import { PayloadOutComponent } from './payload-out/payload-out.component';
 import {FormsModule} from "@angular/forms";
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {FormsModule} from "@angular/forms";
     ButtonModule,
     RippleModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
   ],
   providers: [],
   bootstrap: [AppComponent]

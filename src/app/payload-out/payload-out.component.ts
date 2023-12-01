@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PayloadOutService } from './payload-out.service';
 import {ToastrService} from "ngx-toastr";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-payload-out',
@@ -9,7 +10,8 @@ import {ToastrService} from "ngx-toastr";
 })
 export class PayloadOutComponent {
   constructor( private service: PayloadOutService,
-               private toast: ToastrService) {
+               private toast: ToastrService,
+               private spinner: NgxSpinnerService) {
   }
 
   id : string = "";
@@ -39,6 +41,7 @@ export class PayloadOutComponent {
   }
 
   getID() {
+    this.spinner.show();
     this.updateQuery1 = "";
     this.updateQuery2 = "";
     this.queryDetails = "";
@@ -91,7 +94,9 @@ export class PayloadOutComponent {
                   console.log('Error parsing payload:', parseError);
                 }
               }
+              this.spinner.hide();
             } else {
+              this.spinner.hide();
               this.alertType = "alert alert-danger";
               this.toast.error('No payloads found', 'Error', {
                 timeOut: 3000,
@@ -101,11 +106,13 @@ export class PayloadOutComponent {
             }
           },
           (error: any) => {
+            this.spinner.hide();
             console.log('Error in HTTP request');
             // Handle the error as needed
           }
         );
       } catch (e) {
+        this.spinner.hide();
         console.log('Error in getID');
         // Handle the error as needed
       }
@@ -155,7 +162,9 @@ export class PayloadOutComponent {
                   console.log('Error parsing payload:', parseError);
                 }
               }
+              this.spinner.hide();
             } else {
+              this.spinner.hide();
               this.alertType = "alert alert-danger";
               this.toast.error('No payloads found', 'Error', {
                 timeOut: 3000,
@@ -165,11 +174,13 @@ export class PayloadOutComponent {
             }
           },
           (error: any) => {
+            this.spinner.hide();
             console.log('Error in HTTP request');
             // Handle the error as needed
           }
         );
       } catch (e) {
+        this.spinner.hide();
         console.log('Error in getID');
         // Handle the error as needed
       }
@@ -199,6 +210,7 @@ export class PayloadOutComponent {
   }
 
   excel() {
+    this.spinner.show();
     try {
       this.service.excelGen(this.id.toString()).subscribe(
         (response: any) => {
@@ -206,6 +218,7 @@ export class PayloadOutComponent {
         },
         (error: any) => {
           if (error.status === 200) {
+            this.spinner.hide();
             this.alertType = "alert alert-success";
             this.alertMessage = "Downloaded successfully";
             this.toast.success('Excel file downloaded', 'Success', {
@@ -214,6 +227,7 @@ export class PayloadOutComponent {
             });
           }
           else if (error.status === 500) {
+            this.spinner.hide();
             this.alertType = "alert alert-danger";
             this.alertMessage = "Error downloading file";
             this.toast.error('Error downloading file', 'Error', {
@@ -224,6 +238,7 @@ export class PayloadOutComponent {
         }
       );
     } catch (e) {
+      this.spinner.hide();
       console.log('Error in excel');
     }
   }
