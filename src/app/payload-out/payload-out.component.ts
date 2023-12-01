@@ -222,7 +222,7 @@ export class PayloadOutComponent {
             this.alertType = "alert alert-success";
             this.alertMessage = "Downloaded successfully";
             this.toast.success('Excel file downloaded', 'Success', {
-              timeOut: 3000,
+              timeOut: 5000,
               progressBar: true,
             });
           }
@@ -231,7 +231,7 @@ export class PayloadOutComponent {
             this.alertType = "alert alert-danger";
             this.alertMessage = "Error downloading file";
             this.toast.error('Error downloading file', 'Error', {
-              timeOut: 3000,
+              timeOut: 5000,
               progressBar: true,
             });
           }
