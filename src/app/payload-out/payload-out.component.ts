@@ -184,6 +184,13 @@ export class PayloadOutComponent {
         console.log('Error in getID');
         // Handle the error as needed
       }
+    } else {
+      this.spinner.hide();
+      this.alertType = "alert alert-danger";
+      this.toast.error('Please select an option', 'Error', {
+        timeOut: 3000,
+        progressBar: true,
+      });
     }
   }
 
