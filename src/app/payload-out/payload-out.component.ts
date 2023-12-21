@@ -50,6 +50,7 @@ export class PayloadOutComponent {
       try {
         this.service.payload(this.id.toString()).subscribe(
           (response: any) => {
+            this.error_msg = [];
             this.pickStatMean = "";
             this.error_codes = [];
             this.total = [];
