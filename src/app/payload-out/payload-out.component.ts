@@ -23,6 +23,7 @@ export class PayloadOutComponent {
   susStep: any;
   pickStat: any;
   allocStat: any;
+  printedStat: any;
   pickStatMean: string = "";
   updateQuery1: string = "";
   updateQuery2: string = "";
@@ -57,6 +58,7 @@ export class PayloadOutComponent {
             this.susStep = response.suspenededStep;
             this.pickStat = response.picklistStatus;
             this.allocStat = response.allocatedStatus;
+            this.printedStat = response.printedStatus;
             this.headerID = response.headerID;
             if (this.pickStat === 0){
               this.pickStatMean = "CREATED"

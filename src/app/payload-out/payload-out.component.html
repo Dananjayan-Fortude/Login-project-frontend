@@ -46,6 +46,8 @@
 <span>picklist status: <b>{{pickStat}}</b>=><i>{{pickStatMean}}</i></span>
 <br/>
 <span>picklist is allocated status: <b>{{allocStat}}</b></span>
+<br>
+<span>picklist allocated status: <b>{{printedStat}}</b></span>
 <hr/>
 <span *ngIf="selectedOption === 'failed'">
   <ng-container *ngFor="let pay of payloads; let i = index">
@@ -61,3 +63,5 @@
 
 <span id="alert" [class]="alertType" [hidden]="hideAlert" style="text-align: center;"
       class="message">{{ alertMessage }}</span>
+
+
