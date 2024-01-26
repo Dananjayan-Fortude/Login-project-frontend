@@ -44,8 +44,12 @@
 <button type="button" class="btn-excel" (click)="excel()">
   Download excel
 </button>
+<br />
+<button (click)="cpUpdate()" class="btn-cpl"><span>CPL UPDATE Query</span></button>
 <hr />
 <span>
+  <pre *ngFor="let cpl of cplUpdateQuery;"> {{ cpl }} <br/></pre>
+
   <pre>{{ queryDetails }}</pre>
 
   <pre>{{ updateQuery1 }}</pre>

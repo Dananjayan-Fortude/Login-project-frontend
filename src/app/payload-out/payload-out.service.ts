@@ -11,6 +11,7 @@ export class PayloadOutService {
   private url2 = 'http://localhost:3000/database/query/';
   private url3 = 'http://localhost:3000/database/ExcelGen/';
   private url4 = 'http://localhost:3000/database/payloads/';
+  private cpl = 'http://localhost:3000/cpl-update/CPL/work';
   constructor(private http: HttpClient) { }
 
   payload(displayHeaderId: string): Observable<any> {
@@ -25,5 +26,9 @@ export class PayloadOutService {
 
   successPayload(displayHeaderId: string): Observable<any> {
     return this.http.get(this.url4 + displayHeaderId);
+  }
+
+  cplUpdate(): Observable<any> {
+    return this.http.get(this.cpl);
   }
 }

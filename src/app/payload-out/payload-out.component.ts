@@ -19,6 +19,7 @@ export class PayloadOutComponent {
   error_msg: any[] = [];
   total: number[] = [];
   error_codes: any[] = [];
+  cplUpdateQuery: any[] = [];
   headerID: any;
   susStep: any;
   pickStat: any;
@@ -202,6 +203,7 @@ export class PayloadOutComponent {
   }
 
   getQuery() {
+    this.cplUpdateQuery = [];
     try {
       this.service.query(this.id.toString()).subscribe(
         (response: any) => {
@@ -245,6 +247,31 @@ export class PayloadOutComponent {
               progressBar: true,
             });
           }
+        }
+      );
+    } catch (e) {
+      this.spinner.hide();
+      console.log('Error in excel');
+    }
+  }
+
+  cpUpdate() {
+    this.cplUpdateQuery = [];
+    this.spinner.show();
+    try {
+      this.service.cplUpdate().subscribe(
+        (response: any) => {
+          this.cplUpdateQuery = response;
+          this.spinner.hide();
+        },
+        (error: any) => {
+          this.spinner.hide();
+          this.alertType = "alert alert-danger";
+          this.alertMessage = "Error getting CPL";
+          this.toast.error('Error getting CPL', 'Error', {
+            timeOut: 5000,
+            progressBar: true,
+          });
         }
       );
     } catch (e) {
