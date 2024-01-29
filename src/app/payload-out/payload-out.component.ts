@@ -268,7 +268,7 @@ export class PayloadOutComponent {
           this.spinner.hide();
           this.alertType = "alert alert-danger";
           this.alertMessage = "Error getting CPL";
-          this.toast.error('Error getting CPL', 'Error', {
+          this.toast.error(error.error.text, 'Error', {
             timeOut: 5000,
             progressBar: true,
           });
