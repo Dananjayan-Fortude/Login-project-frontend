@@ -7,11 +7,11 @@ import {Observable} from "rxjs";
 })
 export class PayloadOutService {
 
-  private url = 'http://localhost:3000/database/errorpayload/';
-  private url2 = 'http://localhost:3000/database/query/';
-  private url3 = 'http://localhost:3000/database/ExcelGen/';
-  private url4 = 'http://localhost:3000/database/payloads/';
-  private cpl = 'http://localhost:3000/cpl-update/CPL/work';
+  private url = 'http://localhost/database/errorpayload/';
+  private url2 = 'http://localhost/database/query/';
+  private url3 = 'http://localhost/database/ExcelGen/';
+  private url4 = 'http://localhost/database/payloads/';
+  private cpl = 'http://localhost/cpl-update/CPL/work';
   constructor(private http: HttpClient) { }
 
   payload(displayHeaderId: string): Observable<any> {
