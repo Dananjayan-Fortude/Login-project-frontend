@@ -1,11 +1,11 @@
 <!-- Input Box -->
 <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
 <div class="inputbox">
-  <input required="required" type="text" (input)="idInput($event)" />
+  <input required="required" type="text" (input)="idInput($event)"/>
   <span>Enter the Display ID</span>
   <i></i>
 </div>
-<br />
+<br/>
 <div class="choice">
   <div>
     <label>
@@ -35,18 +35,14 @@
 </div>
 
 <!-- Button -->
-<button (click)="getID()" class="btn-shine"><span>Get payloads</span></button>
-<br />
+<button (click)="getID()" class="btn-shine" type="button"><span>Get payloads</span></button>
+<br/>
 <button class="btn-query" type="button" (click)="getQuery()">
   Get the query
 </button>
-<br />
-<button type="button" class="btn-excel" (click)="excel()">
-  Download excel
-</button>
-<br />
-<button (click)="cpUpdate()" class="btn-cpl"><span>CPL UPDATE Query</span></button>
-<hr />
+<br/>
+<button (click)="picklistReversal()" class="btn-shine">Reverse Picklist</button>
+<hr/>
 <span>
   <pre *ngFor="let cpl of cplUpdateQuery;"> {{ cpl }} <br/></pre>
 
@@ -56,37 +52,38 @@
 
   <pre>{{ updateQuery2 }}</pre>
 </span>
-<hr />
+<hr/>
 <span
-  >picklist header id: <b>{{ headerID }}</b></span
+>picklist header id: <b>{{ headerID }}</b></span
 >
-<br />
+<br/>
 <span
-  >picklist display id: <b>{{ id }}</b></span
+>picklist display id: <b>{{ id }}</b></span
 >
-<br />
+<br/>
 <span
-  >picklist suspended step: <b>{{ susStep }}</b></span
+>picklist suspended step: <b>{{ susStep }}</b></span
 >
-<br />
+<br/>
 <span
-  >picklist status: <b>{{ pickStat }}</b
-  >=><i>{{ pickStatMean }}</i></span
+>picklist status: <b>{{ pickStat }}</b
+>=><i>{{ pickStatMean }}</i></span
 >
-<br />
+<br/>
 <span
-  >picklist allocated status: <b>{{ allocStat }}</b></span
+>picklist allocated status: <b>{{ allocStat }}</b></span
 >
-<br />
+<br/>
 <span
-  >picklist printed status: <b>{{ printedStat }}</b></span
+>picklist printed status: <b>{{ printedStat }}</b></span
 >
-<hr />
+<hr/>
 <span *ngIf="selectedOption === 'failed'">
   <ng-container *ngFor="let pay of payloads; let i = index">
     <pre
       class="json-display"
-    >===== object: {{ i + 1 }} =====<br/> Error Message : {{error_msg[i]}}<br> Error Code: {{error_codes[i]}}<br/>{{ pay | json }}<br/>Total quantity: {{total[i]}}</pre>
+    >===== object: {{ i + 1 }} =====<br/> Error Message : {{ error_msg[i] }}<br> Error Code: {{ error_codes[i] }}
+      <br/>{{ pay | json }}<br/>Total quantity: {{ total[i] }}</pre>
   </ng-container>
 </span>
 
@@ -94,7 +91,7 @@
   <ng-container *ngFor="let pay of payloads; let i = index">
     <pre
       class="json-display"
-    >===== object: {{ i + 1 }} =====<br/>  {{ pay | json }}<br/>Total quantity: {{total[i]}}</pre>
+    >===== object: {{ i + 1 }} =====<br/>  {{ pay | json }}<br/>Total quantity: {{ total[i] }}</pre>
   </ng-container>
 </span>
 
@@ -104,5 +101,5 @@
   [hidden]="hideAlert"
   style="text-align: center"
   class="message"
-  >{{ alertMessage }}</span
->
+>{{ alertMessage }}
+</span>
