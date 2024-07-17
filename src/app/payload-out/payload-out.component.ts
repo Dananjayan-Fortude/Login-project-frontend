@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { PayloadOutService } from './payload-out.service';
+import {Component} from '@angular/core';
+import {PayloadOutService} from './payload-out.service';
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
+import {reverseDto} from "./DTO/reverse.dto";
+import {globalResponse} from "./classes/response-class";
 
 @Component({
   selector: 'app-payload-out',
@@ -9,12 +11,12 @@ import {NgxSpinnerService} from "ngx-spinner";
   styleUrls: ['./payload-out.component.css']
 })
 export class PayloadOutComponent {
-  constructor( private service: PayloadOutService,
-               private toast: ToastrService,
-               private spinner: NgxSpinnerService) {
+  constructor(private service: PayloadOutService,
+              private toast: ToastrService,
+              private spinner: NgxSpinnerService) {
   }
 
-  id : string = "";
+  id: string = "";
   payloads: any[] = [];
   error_msg: any[] = [];
   total: number[] = [];
@@ -32,7 +34,8 @@ export class PayloadOutComponent {
   alertType: string = "";
   alertMessage: string | undefined;
   hideAlert: boolean = true;
-  selectedOption: string = '';
+  selectedOption: string | null = null;
+  headerIdAvailable: boolean = false;
 
   onRadioButtonChange(value: string) {
     this.payloads = [];
@@ -43,6 +46,7 @@ export class PayloadOutComponent {
   }
 
   getID() {
+    this.headerIdAvailable = true;
     this.spinner.show();
     this.updateQuery1 = "";
     this.updateQuery2 = "";
@@ -61,25 +65,25 @@ export class PayloadOutComponent {
             this.allocStat = response.allocatedStatus;
             this.printedStat = response.printedStatus;
             this.headerID = response.headerID;
-            if (this.pickStat === 0){
+            if (this.pickStat === 0) {
               this.pickStatMean = "CREATED"
-            } else if (this.pickStat === 1){
+            } else if (this.pickStat === 1) {
               this.pickStatMean = "PENDING"
-            } else if (this.pickStat === 2){
+            } else if (this.pickStat === 2) {
               this.pickStatMean = "NOT_STARTED"
-            } else if (this.pickStat === 3){
+            } else if (this.pickStat === 3) {
               this.pickStatMean = "READY_TO_ISSUE"
-            } else if (this.pickStat === 4){
+            } else if (this.pickStat === 4) {
               this.pickStatMean = "ISSUED"
-            } else if (this.pickStat === 5){
+            } else if (this.pickStat === 5) {
               this.pickStatMean = "SUSPENDED"
-            } else if (this.pickStat === 6){
+            } else if (this.pickStat === 6) {
               this.pickStatMean = "FAILED"
-            } else if (this.pickStat === 7){
+            } else if (this.pickStat === 7) {
               this.pickStatMean = "REVERSED"
             }
             let totVal = 0;
-            if (response && response.payloads && response.payloads.length !== 0 ) {
+            if (response && response.payloads && response.payloads.length !== 0) {
               // console.log(this.error_codes);
               for (let i = 0; i < response.payloads.length; i++) {
                 for (let x = 0; x < JSON.parse(response.payloads[i]).to.mos.length; x++) {
@@ -120,7 +124,7 @@ export class PayloadOutComponent {
         console.log('Error in getID');
         // Handle the error as needed
       }
-    }else if(this.selectedOption === 'success') {
+    } else if (this.selectedOption === 'success') {
       try {
         this.service.successPayload(this.id.toString()).subscribe(
           (response: any) => {
@@ -131,25 +135,25 @@ export class PayloadOutComponent {
             this.pickStat = response.picklistStatus;
             this.allocStat = response.allocatedStatus;
             this.headerID = response.headerID;
-            if (this.pickStat === 0){
+            if (this.pickStat === 0) {
               this.pickStatMean = "CREATED"
-            } else if (this.pickStat === 1){
+            } else if (this.pickStat === 1) {
               this.pickStatMean = "PENDING"
-            } else if (this.pickStat === 2){
+            } else if (this.pickStat === 2) {
               this.pickStatMean = "NOT_STARTED"
-            } else if (this.pickStat === 3){
+            } else if (this.pickStat === 3) {
               this.pickStatMean = "READY_TO_ISSUE"
-            } else if (this.pickStat === 4){
+            } else if (this.pickStat === 4) {
               this.pickStatMean = "ISSUED"
-            } else if (this.pickStat === 5){
+            } else if (this.pickStat === 5) {
               this.pickStatMean = "SUSPENDED"
-            } else if (this.pickStat === 6){
+            } else if (this.pickStat === 6) {
               this.pickStatMean = "FAILED"
-            } else if (this.pickStat === 7){
+            } else if (this.pickStat === 7) {
               this.pickStatMean = "REVERSED"
             }
             let totVal = 0;
-            if (response && response.payloads && response.payloads.length !== 0 ) {
+            if (response && response.payloads && response.payloads.length !== 0) {
               // console.log(this.error_codes);
               for (let i = 0; i < response.payloads.length; i++) {
                 for (let x = 0; x < JSON.parse(response.payloads[i]).to.mos.length; x++) {
@@ -189,6 +193,7 @@ export class PayloadOutComponent {
         // Handle the error as needed
       }
     } else {
+      this.headerIdAvailable = false;
       this.spinner.hide();
       this.alertType = "alert alert-danger";
       this.toast.error('Please select an option', 'Error', {
@@ -237,8 +242,7 @@ export class PayloadOutComponent {
               timeOut: 5000,
               progressBar: true,
             });
-          }
-          else if (error.status === 500) {
+          } else if (error.status === 500) {
             this.spinner.hide();
             this.alertType = "alert alert-danger";
             this.alertMessage = "Error downloading file";
@@ -277,6 +281,63 @@ export class PayloadOutComponent {
     } catch (e) {
       this.spinner.hide();
       console.log('Error in excel');
+    }
+  }
+
+  picklistReversal() {
+    this.spinner.show();
+    if (this.selectedOption == null) {
+      this.spinner.hide();
+      this.alertType = "alert alert-danger";
+      this.alertMessage = "Please select an option";
+      this.toast.error('Please select an option', 'Error', {
+        timeOut: 3000,
+        progressBar: true,
+      });
+      return;
+    }
+    if (!this.headerIdAvailable) {
+      this.spinner.hide();
+      this.alertType = "alert alert-danger";
+      this.alertMessage = "Please get the picklist Info";
+      this.toast.error('Please enter a header ID', 'Error', {
+        timeOut: 3000,
+        progressBar: true,
+      });
+      return;
+    }
+    const data: reverseDto = {
+      picklistHeaderId: this.headerID,
+      plantCode: this.id.startsWith('B03') ? 'L01' : 'S00S00',
+      updatedBy: 'vijendranD'
+    };
+
+    try {
+      this.service.reversalPicklist(data).subscribe(
+        (res: globalResponse) => {
+          if (!res.status) {
+            this.spinner.hide();
+            this.alertType = "alert alert-danger";
+            this.alertMessage = res.message;
+            this.toast.error(res.message, 'Error', {
+              timeOut: 3000,
+              progressBar: true,
+            });
+            return;
+          } else {
+            this.spinner.hide();
+            this.alertType = "alert alert-success";
+            this.alertMessage = res.message;
+            this.toast.success(res.message, 'Success', {
+              timeOut: 3000,
+              progressBar: true,
+            });
+            return;
+          }
+        }
+      )
+    } catch (e) {
+      this.spinner.hide();
     }
   }
 }
