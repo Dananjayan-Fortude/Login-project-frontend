@@ -32,7 +32,6 @@ export class UserDetailsEditComponent implements OnInit {
 
   ngOnInit() {
     const accessToken = localStorage.getItem('accessToken');
-    console.log('Access token:', accessToken);
     this.route.params.subscribe(params => {
       this.userId = params['id'];
     });
@@ -54,7 +53,7 @@ export class UserDetailsEditComponent implements OnInit {
           setTimeout(() => {
             this.route2.navigate(['/user-details']);
           }, 4000);
-        } else if (data.error.message === 'Unauthorized') {
+        } else if (data.error.statusCode === '403') {
           this.alertMessage = data.error.message;
           this.error = data.error.message;
           this.alertType = "alert alert-danger";
